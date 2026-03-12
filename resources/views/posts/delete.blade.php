@@ -28,23 +28,27 @@ class="h-48 w-full object-cover">
 </p>
 <div class="flex gap-2">
 
-<a href="{{ route('posts.show',$post->id) }}"
-class="bg-blue-500 text-white px-3 py-1 rounded text-sm">
-View
-</a>
 
-<a href="{{ route('posts.edit',$post->id) }}"
+
+<form action="{{ route('posts.back', $post->id) }}" method="POST">
+@csrf
+
+
+<button
 class="bg-yellow-400 text-white px-3 py-1 rounded text-sm">
-Edit
-</a>
+Back
+</button>
 
+</form>
 
-
-<form action="{{ route('posts.delete',$post->id) }}" method="POST">
+<form action="{{ route('posts.force', $post->id) }}" method="POST">
 @csrf
 @method('DELETE')
 
-<button class="bg-red-500 text-white px-3 py-1 rounded text-sm" >Delete</button>
+<button
+class="bg-red-500 text-white px-3 py-1 rounded text-sm">
+Delete
+</button>
 
 </form>
 

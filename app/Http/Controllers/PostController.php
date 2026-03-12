@@ -12,7 +12,7 @@ class PostController extends Controller
    
     public function index()
     {
-        return view("posts.index" , [ "posts" => post::all() ]) ;
+        return view("posts.index" , [ "posts" => post::paginate(20) ]) ;
     }
 
 
@@ -80,6 +80,24 @@ class PostController extends Controller
     {
         $post->delete() ;
         return redirect()->route("posts.index" )->with("status" , "datat deleted sucsuse") ;
+    }
+
+    public function deletedPosts(){
+        return view("posts.delete" , [ "posts" => post::onlyTrashed()->paginate(20) ]) ;
+    }
+
+    public function forceDelete(string $id){
+        $post = Post::withTrashed()->findOrFail($id);
+
+        $post->forceDelete();
+
+        return back();
+    }
+
+    public function back(string $id){
+        post::withTrashed()->where('id', $id)
+        ->restore();
+        return back();
     }
 
 }

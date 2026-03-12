@@ -22,6 +22,10 @@ Posts Dashboard
 class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
 Create Post
 </a>
+<a href="{{ route('posts.deletedPosts') }}"
+class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+Deleted Post
+</a>
 
 </div>
 </nav>
